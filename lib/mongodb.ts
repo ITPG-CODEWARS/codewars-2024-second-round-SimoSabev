@@ -1,6 +1,6 @@
 import { MongoClient, Db, ServerApiVersion } from 'mongodb';
 
-const uri = "mongodb+srv://sabevsimeon08:2FrLCJpTDauZihGS@cluster0.f6dww.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // replace <db_password> with your password
+const uri = "mongodb+srv://sabevsimeon08:sEPl6FCwy2cWo6D1@cluster0.f6dww.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // replace <db_password> with your password
 
 let client: MongoClient | null = null;
 let db: Db | null = null;

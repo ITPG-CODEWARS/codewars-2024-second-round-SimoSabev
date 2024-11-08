@@ -1,8 +1,13 @@
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
+import { ClerkProvider } from "@clerk/nextjs";
+import type { AppProps } from "next/app";
+import "@/styles/globals.css";  // Assuming you're using Tailwind CSS
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+      <ClerkProvider>
+        <Component {...pageProps} />
+      </ClerkProvider>
+  );
 }
 
 export default MyApp;

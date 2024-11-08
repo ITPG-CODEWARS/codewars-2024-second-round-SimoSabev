@@ -2,8 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .border-border {
-    border: 1px solid #000; /* Example style */
-  }
-}

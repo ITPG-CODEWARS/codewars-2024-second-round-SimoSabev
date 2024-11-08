@@ -1,3 +1,4 @@
+// /pages/index.tsx
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { SignedIn, SignedOut, UserButton, useAuth } from "@clerk/nextjs";
@@ -6,6 +7,8 @@ import { useRouter } from 'next/router';
 export default function Home() {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
+  const [customCode, setCustomCode] = useState('');
+  const [length, setLength] = useState(6); // Default length is 6
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { isSignedIn } = useAuth();
@@ -25,7 +28,7 @@ export default function Home() {
       const res = await fetch('/api/shorten', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ originalUrl }),
+        body: JSON.stringify({ originalUrl, customCode, length }),
       });
 
       const data = await res.json();
@@ -78,6 +81,23 @@ export default function Home() {
                   value={originalUrl}
                   onChange={(e) => setOriginalUrl(e.target.value)}
                   required
+              />
+              <label className="block mb-2 text-lg font-medium">Custom Short Code (Optional):</label>
+              <input
+                  type="text"
+                  className="border p-2 rounded w-full mb-4"
+                  placeholder="custom-name"
+                  value={customCode}
+                  onChange={(e) => setCustomCode(e.target.value)}
+              />
+              <label className="block mb-2 text-lg font-medium">Short Code Length:</label>
+              <input
+                  type="number"
+                  min="5"
+                  max="10"
+                  value={length}
+                  onChange={(e) => setLength(parseInt(e.target.value))}
+                  className="border p-2 rounded w-full mb-4"
               />
               <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded w-full" disabled={loading}>
                 {loading ? 'Shortening...' : 'Shorten'}

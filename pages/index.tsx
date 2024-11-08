@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { SignedIn, SignedOut, UserButton, useAuth } from "@clerk/nextjs";
 import { useRouter } from 'next/router';
+import favicon from '../public/favicon.png';
 
 export default function Home() {
   const [originalUrl, setOriginalUrl] = useState('');
@@ -56,7 +57,7 @@ export default function Home() {
         <Head>
           <title>Urly</title>
           <meta name="description" content="Shorten your URLs easily" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href={favicon.src} />
         </Head>
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
           <SignedIn>
